@@ -21,17 +21,17 @@ class ParticleBox:
 		for x in range(0 , self.init_coll.size):
 			self.init_coll[x]=x
 
-	def monitor_col(self,j,k,xy):
+	def monitor_col(self,j,k,xy):# indica si se produce una colision. J, K son dos particulas xy representa  a una coordenada `x` si xy=0 o `y` si xy=1
 		if  abs(self.state[j,xy]-self.state[k,xy])<2*self.size and self.border(j,k) :
 			return True
 		return False
 
-	def out_monitor(self,j,k,xy):
+	def out_monitor(self,j,k,xy):#indica si terminaron de colisionar 
 		if abs(self.state[j,xy]-self.state[k,xy])>2.25*self.size and self.border(j,k):
 			return True
 		return False
 
-	def border(self,j,k):
+	def border(self,j,k):# Permite que la particula no la atrape el borde
 		notK_border=False
 		notJ_border=False
 		border_limit=1.1
@@ -43,7 +43,7 @@ class ParticleBox:
 			return True
 		return False
 
-	def changeVel(self,j,k):
+	def changeVel(self,j,k):# Asigna la velocidad despues de una colision.
 		gh=self.state[j,2]
 		self.state[j,2]=self.state[k,2]
 		self.state[k,2]=gh
